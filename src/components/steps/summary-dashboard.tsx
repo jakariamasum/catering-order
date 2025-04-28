@@ -29,8 +29,8 @@ const SummaryDashboard = () => {
           </CardHeader>
           <CardContent className="p-3 sm:p-4 pt-0">
             <p className="text-xs sm:text-sm text-gray-600">
-              Browse our menu and select the items you'd like to order for your
-              event.
+              Browse our menu and select the items you&lsquo;d like to order for
+              your event.
             </p>
           </CardContent>
         </Card>
@@ -44,7 +44,7 @@ const SummaryDashboard = () => {
           </CardHeader>
           <CardContent className="p-3 sm:p-4 pt-0">
             <p className="text-xs sm:text-sm text-gray-600">
-              Let us know how many people you're expecting at your event.
+              Let us know how many people you&lsquo;re expecting at your event.
             </p>
           </CardContent>
         </Card>

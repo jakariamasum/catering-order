@@ -38,7 +38,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const [formData, setFormData] = useState<OrderFormData>(defaultFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-
+  console.log(formData);
   const updateFormData = (data: Partial<OrderFormData>) => {
     setFormData((prev) => {
       const newData = { ...prev, ...data };

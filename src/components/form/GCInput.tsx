@@ -1,6 +1,11 @@
 import { IForm } from "@/types";
 import { useFormContext } from "react-hook-form";
 
+const getNestedError = (errors: any, path: string) => {
+  if (!errors) return undefined;
+  return path.split(".").reduce((acc, part) => acc && acc[part], errors);
+};
+
 const GCInput = ({
   name,
   label,
@@ -13,7 +18,9 @@ const GCInput = ({
     register,
     formState: { errors },
   } = useFormContext();
-  const error = errors?.[name]?.message as string | undefined;
+
+  const fieldError = getNestedError(errors, name);
+  const error = fieldError?.message as string | undefined;
 
   return (
     <div className="w-full space-y-2">

@@ -80,14 +80,14 @@ const ContactInformation = () => {
           <CardContent className="p-3 sm:p-4 pt-0 space-y-3 sm:space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <GCInput
-                name="firstName"
+                name="contactInfo.firstName"
                 label="First Name"
                 type="text"
                 placeholder="john doe"
               />
 
               <GCInput
-                name="lastName"
+                name="contactInfo.lastName"
                 label="Last Name"
                 type="text"
                 placeholder="doe"
@@ -96,14 +96,14 @@ const ContactInformation = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <GCInput
-                name="email"
+                name="contactInfo.email"
                 label="Email"
                 type="email"
                 placeholder="john@doe.com"
               />
 
               <GCInput
-                name="phone"
+                name="contactInfo.phone"
                 label="Phone Number"
                 type="number"
                 placeholder="xxxxxxxxxxxx"
@@ -123,7 +123,7 @@ const ContactInformation = () => {
           </CardHeader>
           <CardContent className="p-3 sm:p-4 pt-0 space-y-3 sm:space-y-4">
             <GCInput
-              name="streetAddress"
+              name="deliveryAddress.street"
               label="Street Address"
               type="text"
               placeholder="12/A Alfa road"
@@ -131,7 +131,7 @@ const ContactInformation = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               <GCInput
-                name="city"
+                name="deliveryAddress.city"
                 label="City"
                 type="text"
                 placeholder="dhaka"
@@ -139,7 +139,7 @@ const ContactInformation = () => {
 
               <div className="space-y-1 sm:space-y-2">
                 <GCInput
-                  name="state"
+                  name="deliveryAddress.state"
                   label="state"
                   type="text"
                   placeholder="dhaka"
@@ -147,7 +147,7 @@ const ContactInformation = () => {
               </div>
 
               <GCInput
-                name="zipCode"
+                name="deliveryAddress.zipCode"
                 label="Zip Code"
                 type="number"
                 placeholder="5000"
@@ -224,7 +224,9 @@ const ContactInformation = () => {
             </div>
           </CardContent>
         </Card>
+        <button type="submit">submit hereerere</button>
       </GCForm>
+      <div>sdsdjoj jnjsn jj</div>
     </div>
   );
 };

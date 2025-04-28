@@ -11,10 +11,17 @@ export const menuItemSchema = z.object({
 
 export const numberOfPeopleSchema = z.object({
   numberOfPeople: z
-    .number()
-    .int()
-    .min(1, "At least 1 person is required")
-    .max(500, "Maximum 500 people allowed"),
+    .string() // Coerce input to string first
+    .refine((val) => !isNaN(Number(val)), {
+      message: "Must be a valid number",
+    })
+    .transform((val) => Number(val)) // Transform string to number
+    .pipe(
+      z
+        .number()
+        .min(1, "At least 1 person is required")
+        .max(500, "Maximum 500 people allowed")
+    ),
 });
 
 export const contactInfoSchema = z.object({

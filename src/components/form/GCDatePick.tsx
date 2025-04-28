@@ -16,7 +16,6 @@ interface DatePickerInputProps {
 
 const GCDatePick = ({ name, label }: DatePickerInputProps) => {
   const {
-    register,
     setValue,
     watch,
     formState: { errors },

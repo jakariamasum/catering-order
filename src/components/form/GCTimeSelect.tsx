@@ -27,7 +27,6 @@ for (let hour = 0; hour < 24; hour++) {
 
 const GCTimeSelect = ({ name, label }: TimeSelectInputProps) => {
   const {
-    register,
     setValue,
     watch,
     formState: { errors },
@@ -55,7 +54,7 @@ const GCTimeSelect = ({ name, label }: TimeSelectInputProps) => {
             errors[name] && "border-red-500"
           )}
         >
-          <SelectValue placeholder="Select a time" />
+          <SelectValue placeholder="Select a time">{selectedTime}</SelectValue>
         </SelectTrigger>
 
         <SelectContent>

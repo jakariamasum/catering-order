@@ -73,8 +73,8 @@ const OrderSuccess = () => {
           Order Confirmed!
         </h2>
         <p className="text-gray-600 text-xs sm:text-sm">
-          Thank you for your order. We've received your catering request and
-          will be in touch shortly.
+          Thank you for your order. We&lsquo;ve received your catering request
+          and will be in touch shortly.
         </p>
       </div>
 
