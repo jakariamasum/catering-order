@@ -11,11 +11,11 @@ export const menuItemSchema = z.object({
 
 export const numberOfPeopleSchema = z.object({
   numberOfPeople: z
-    .string() // Coerce input to string first
+    .string()
     .refine((val) => !isNaN(Number(val)), {
       message: "Must be a valid number",
     })
-    .transform((val) => Number(val)) // Transform string to number
+    .transform((val) => Number(val))
     .pipe(
       z
         .number()
@@ -28,14 +28,17 @@ export const contactInfoSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  phone: z.string().min(11, "Phone number must be at least 11 digits"),
 });
 
 export const deliveryAddressSchema = z.object({
   street: z.string().min(1, "Street address is required"),
   city: z.string().min(1, "City is required"),
   state: z.string().min(1, "State is required"),
-  zipCode: z.string().min(5, "Valid zip code is required"),
+  zipCode: z
+    .string()
+    .min(3, "Valid zip code is required")
+    .max(5, "Maximum 5 digits allowed"),
 });
 
 export const eventDetailsSchema = z.object({

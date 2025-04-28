@@ -58,7 +58,10 @@ const GCDatePick = ({ name, label }: DatePickerInputProps) => {
             selected={selectedDate ? new Date(selectedDate) : undefined}
             onSelect={(date) => {
               if (date) {
-                setValue(name, format(date, "yyyy-MM-dd"));
+                setValue(name, format(date, "yyyy-MM-dd"), {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
                 setOpen(false);
               }
             }}

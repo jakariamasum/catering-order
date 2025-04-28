@@ -5,9 +5,28 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Utensils, Users, Calendar, Clock, ChefHat } from "lucide-react";
+import {
+  Utensils,
+  Users,
+  Calendar,
+  Clock,
+  ChefHat,
+  ArrowRight,
+  ArrowLeft,
+} from "lucide-react";
+import Button from "../ui/button";
+import { useOrder } from "@/context/order-context";
 
-const SummaryDashboard = () => {
+const SummaryDashboard = ({
+  currentStep,
+  handleBack,
+  handleNext,
+}: {
+  currentStep: number;
+  handleNext: () => void;
+  handleBack: () => void;
+}) => {
+  const { formData } = useOrder();
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="text-center space-y-2">
@@ -18,7 +37,6 @@ const SummaryDashboard = () => {
           Follow these simple steps to place your catering order
         </p>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="pb-2 p-3 sm:p-4">
@@ -77,7 +95,6 @@ const SummaryDashboard = () => {
           </CardContent>
         </Card>
       </div>
-
       <div className="bg-teal-50 p-3 sm:p-4 rounded-lg border border-teal-100">
         <div className="flex items-start gap-2 sm:gap-3">
           <ChefHat className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600 mt-1 flex-shrink-0" />
@@ -93,6 +110,32 @@ const SummaryDashboard = () => {
           </div>
         </div>
       </div>
+      {currentStep < 3 && (
+        <div className="flex justify-between mt-8">
+          <Button
+            variant="outline"
+            onClick={handleBack}
+            disabled={currentStep === 0}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back
+          </Button>
+
+          <Button
+            type="submit"
+            onClick={handleNext}
+            className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-2"
+            disabled={
+              currentStep === 1 &&
+              (formData.selectedItems.length === 0 ||
+                formData.numberOfPeople < 1)
+            }
+          >
+            {currentStep === 2 ? "Submit Order" : "Continue"}{" "}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -46,7 +46,12 @@ const GCTimeSelect = ({ name, label }: TimeSelectInputProps) => {
 
       <Select
         value={selectedTime || ""}
-        onValueChange={(value) => setValue(name, value)}
+        onValueChange={(value) =>
+          setValue(name, value, {
+            shouldValidate: true,
+            shouldDirty: true,
+          })
+        }
       >
         <SelectTrigger
           className={cn(

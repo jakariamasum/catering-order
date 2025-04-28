@@ -124,8 +124,8 @@ export function Calendar({
     <div className={cn("p-3", className)}>
       <div className="flex items-center justify-between">
         <Button
-          variant="outline"
-          className="h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          variant="secondary"
+          className="h-7  p-0  hover:opacity-100"
           onClick={prevMonth}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -138,8 +138,8 @@ export function Calendar({
           })}
         </div>
         <Button
-          variant="outline"
-          className="h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          variant="secondary"
+          className="h-7   p-0  hover:opacity-100"
           onClick={nextMonth}
         >
           <ChevronRight className="h-4 w-4" />

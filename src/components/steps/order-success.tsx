@@ -191,7 +191,10 @@ const OrderSuccess = () => {
         </Button>
 
         <Link href="/" passHref>
-          <Button className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+          <Button
+            type="reset"
+            className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+          >
             <Home className="h-3 w-3 sm:h-4 sm:w-4" /> Return Home
           </Button>
         </Link>

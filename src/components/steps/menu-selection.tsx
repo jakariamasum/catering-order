@@ -15,13 +15,27 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { MinusCircle, PlusCircle, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  MinusCircle,
+  PlusCircle,
+  Users,
+} from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Button from "../ui/button";
 import GCInput from "../form/GCInput";
 import GCForm from "../form/GCForm";
 
-const MenuSelection = () => {
+const MenuSelection = ({
+  currentStep,
+  handleBack,
+  handleNext,
+}: {
+  currentStep: number;
+  handleNext: () => void;
+  handleBack: () => void;
+}) => {
   const { formData, updateFormData } = useOrder();
   const [selectedItems, setSelectedItems] = useState<MenuItemType[]>([]);
   const [activeTab, setActiveTab] = useState<string>("appetizers");
@@ -73,8 +87,8 @@ const MenuSelection = () => {
   };
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data, Number(data.numberOfPeople));
     updateFormData({ numberOfPeople: Number(data.numberOfPeople) });
+    handleNext();
   };
 
   const categories = [
@@ -164,6 +178,7 @@ const MenuSelection = () => {
                       <CardFooter className="flex justify-between items-center p-3 sm:p-4 pt-1 sm:pt-2">
                         <div className="flex items-center gap-2 sm:gap-3">
                           <Button
+                            type="button"
                             variant="secondary"
                             size="icon"
                             className="h-7 w-7 sm:h-8 sm:w-8 rounded-full"
@@ -179,6 +194,7 @@ const MenuSelection = () => {
                           </span>
 
                           <Button
+                            type="button"
                             variant="secondary"
                             size="icon"
                             className="h-7 w-7 sm:h-8 sm:w-8 rounded-full"
@@ -240,7 +256,31 @@ const MenuSelection = () => {
           </Card>
         )}
       </div>
-      <button type="submit">ssssssssssss</button>
+      {currentStep < 3 && (
+        <div className="flex justify-between mt-8">
+          <Button
+            variant="outline"
+            onClick={handleBack}
+            disabled={currentStep === 0}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back
+          </Button>
+
+          <Button
+            type="submit"
+            className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-2"
+            disabled={
+              currentStep === 1 &&
+              (formData.selectedItems.length === 0 ||
+                formData.numberOfPeople < 1)
+            }
+          >
+            {currentStep === 2 ? "Submit Order" : "Continue"}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </GCForm>
   );
 };

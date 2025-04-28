@@ -16,7 +16,13 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { CalendarIcon, MapPin, User } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarIcon,
+  MapPin,
+  User,
+} from "lucide-react";
 import { Label } from "../ui/label";
 
 import GCForm from "../form/GCForm";
@@ -24,6 +30,7 @@ import GCInput from "../form/GCInput";
 import GCDatePick from "../form/GCDatePick";
 import GCTimeSelect from "../form/GCTimeSelect";
 import GCTextArea from "../form/GCTextArea";
+import Button from "../ui/button";
 
 const formSchema = z.object({
   contactInfo: contactInfoSchema,
@@ -35,7 +42,15 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-const ContactInformation = () => {
+const ContactInformation = ({
+  currentStep,
+  handleBack,
+  handleNext,
+}: {
+  currentStep: number;
+  handleNext: () => void;
+  handleBack: () => void;
+}) => {
   const { formData, updateFormData, totalPrice } = useOrder();
   console.log("formdata: ", formData);
 
@@ -54,6 +69,7 @@ const ContactInformation = () => {
       eventTime: data.eventTime,
       specialInstructions: data.specialInstructions,
     });
+    handleNext();
   };
 
   return (
@@ -111,7 +127,6 @@ const ContactInformation = () => {
             </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="p-3 sm:p-4">
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
@@ -155,7 +170,6 @@ const ContactInformation = () => {
             </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="p-3 sm:p-4">
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
@@ -193,7 +207,6 @@ const ContactInformation = () => {
             </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="p-3 sm:p-4">
             <CardTitle className="text-base sm:text-lg">
@@ -224,9 +237,32 @@ const ContactInformation = () => {
             </div>
           </CardContent>
         </Card>
-        <button type="submit">submit hereerere</button>
+        {currentStep < 3 && (
+          <div className="flex justify-between mt-8">
+            <Button
+              variant="outline"
+              onClick={handleBack}
+              disabled={currentStep === 0}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4" /> Back
+            </Button>
+
+            <Button
+              type="submit"
+              className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-2"
+              disabled={
+                currentStep === 1 &&
+                (formData.selectedItems.length === 0 ||
+                  formData.numberOfPeople < 1)
+              }
+            >
+              {currentStep === 2 ? "Submit Order" : "Continue"}{" "}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}{" "}
       </GCForm>
-      <div>sdsdjoj jnjsn jj</div>
     </div>
   );
 };

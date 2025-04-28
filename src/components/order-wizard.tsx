@@ -78,33 +78,11 @@ export default function OrderWizard() {
 
       <Card className="mt-8 shadow-lg border-teal-100">
         <CardContent className="p-6">
-          <CurrentStepComponent />
-
-          {currentStep < 3 && (
-            <div className="flex justify-between mt-8">
-              <Button
-                variant="outline"
-                onClick={handleBack}
-                disabled={currentStep === 0}
-                className="flex items-center gap-2"
-              >
-                <ArrowLeft className="h-4 w-4" /> Back
-              </Button>
-
-              <Button
-                onClick={handleNext}
-                className="bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-2"
-                disabled={
-                  currentStep === 1 &&
-                  (formData.selectedItems.length === 0 ||
-                    formData.numberOfPeople < 1)
-                }
-              >
-                {currentStep === 2 ? "Submit Order" : "Continue"}{" "}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          )}
+          <CurrentStepComponent
+            currentStep={currentStep}
+            handleBack={handleBack}
+            handleNext={handleNext}
+          />
         </CardContent>
       </Card>
     </div>
