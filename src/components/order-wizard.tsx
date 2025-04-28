@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import OrderStepper from "./order-stepper";
 import SummaryDashboard from "./steps/summary-dashboard";
 import MenuSelection from "./steps/menu-selection";
 import ContactInformation from "./steps/contact-information";
 import OrderSuccess from "./steps/order-success";
 import { useOrder } from "@/context/order-context";
-import Button from "./ui/button";
 
 const steps = [
   { title: "Summary", component: SummaryDashboard },
@@ -19,8 +17,7 @@ const steps = [
 ];
 
 export default function OrderWizard() {
-  const { currentStep, setCurrentStep, formData, calculateTotalPrice } =
-    useOrder();
+  const { currentStep, setCurrentStep, calculateTotalPrice } = useOrder();
   const [mounted, setMounted] = useState(false);
 
   // Hydration fix
